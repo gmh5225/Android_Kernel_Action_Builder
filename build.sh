@@ -16,6 +16,7 @@ process_build () {
         CC="${CLANG}" \
         CLANG_TRIPLE=aarch64-linux-gnu- \
         CROSS_COMPILE="${CROSS_COMPILE}" \
+        CROSS_COMPILE_ARM32=aarch64-linux-gnueabi- \
         KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
     
     BUILD_SUCCESS=$?
