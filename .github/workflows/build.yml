@@ -37,7 +37,7 @@ jobs:
   
   #   steps:
       - uses: actions/checkout@v2
-      - name: Building land Kernel
+      - name: Building Kernel
       
   #      env:
    #     BOT_API_KEY: ${{ secrets.BOT_TOKEN }}
