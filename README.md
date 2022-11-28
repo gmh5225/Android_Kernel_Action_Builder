@@ -1,5 +1,8 @@
-# Android Kernel CI Releases
+# Android Kernel Github Action Builder
 A generic auto-build repo for Android kernels using various Continuous Integration services
+
+## Credit
+*  ViRb3--> Files taken from [https://github.com/ViRb3/android-kernel-ci]
 
 ## Features
 * OnePlus 5T ARM64 preset
@@ -30,7 +33,7 @@ Run a new pipeline, optionally defining variables
 Check `config.sh` and `build-deps.sh`
 
 ## Notes
-### GitLab
-Do not flash the artifacts, extract them and flash the zip inside!
-### DroneCI
-As of writing there is no release mechanism, so ZIPs are uploaded to [transfer.sh](https://transfer.sh) and stored for 14 days
+### How to use
+Do not flash the artifacts, extract them and use lmage.gz-dtb or use Android Image Kitchen to unpack boot.img replce lmage.gz-dtb
+### Github Actions
+Release can be added, but ZIPs are uploaded to [transfer.sh](https://transfer.sh) and stored for 14 days.
