@@ -34,6 +34,6 @@ Check `config.sh` and `build-deps.sh`
 
 ## Notes
 ### How to use
-Do not flash the artifacts, extract them and use lmage.gz-dtb or use Android Image Kitchen to unpack boot.img replce lmage.gz-dtb
+Do not flash the artifacts, extract them and use lmage.gz-dtb or use Android Image Kitchen to unpack boot.img replace lmage.gz-dtb
 ### Github Actions
 Release can be added, but ZIPs are uploaded to [transfer.sh](https://transfer.sh) and stored for 14 days.
