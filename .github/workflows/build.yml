@@ -3,7 +3,7 @@ name: kernel builder
 on: 
   push:
     branches:
-      - test-10/main
+      - kernel.lnx.5.4.r1-rel/main
 
   workflow_dispatch:
   
@@ -63,5 +63,5 @@ jobs:
              chmod +x build.sh
              bash build.sh
              chmod +x upload.sh
-             bash upload.sh
+          #   bash upload.sh
         
