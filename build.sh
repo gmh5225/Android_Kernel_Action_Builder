@@ -5,32 +5,37 @@ LABEL="$1"; REF="$2"
 
 process_build () {
     # Used by compiler
-    export CC_FOR_BUILD=clang
+   # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
     # Remove defconfig localversion to prevent overriding
-    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/${DEFCONFIG}"
+    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/$vendor/{DEFCONFIG}"
 
     make O=out ARCH=arm64 ${DEFCONFIG}
-    make -j$(nproc --all) O=out \
-        ARCH=arm64 \
-      #  CC="${CLANG}" \
-      #  CLANG_TRIPLE=aarch64-linux-gnu- \
-        CROSS_COMPILE="${CROSS_COMPILE}" \
-   #     CROSS_COMPILE_ARM32=arm-linux-androideabi- \
+    make -j$(nproc --all) O=out                     \
+        LLVM=1                                      \
+        LLVM_IAS=1                                  \
+        HOSTLD=ld.lld                               \
+        ARCH=arm64                                  \
+   #     CC="${CLANG}"                               \
+        CC_COMPAT=$CC_COMPAT                        \
+   #     CLANG_TRIPLE=aarch64-linux-gnu-             \
+        CROSS_COMPILE="${CROSS_COMPILE}"            \
+        CROSS_COMPILE_COMPAT=$CC_32                 \
+   #     CROSS_COMPILE_ARM32=arm-linux-androideabi-  \
         KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
     
     BUILD_SUCCESS=$?
     
     if [ ${BUILD_SUCCESS} -eq 0 ]; then
         mkdir -p "${ANYKERNEL_IMAGE_DIR}"
-        cp -f "${KERNEL_DIR}/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL_IMAGE_DIR}/Image.gz-dtb"
+        cp -f "${KERNEL_DIR}/out/arch/arm64/boot/Image" "${ANYKERNEL_IMAGE_DIR}/Image"
         cd "${ANYKERNEL_DIR}"
         zip -r9 "${REPO_ROOT}/${FULLNAME}.zip" * -x README
         cd -
     fi
     
     rm -rf "${KERNEL_DIR}/out"
-    rm "${ANYKERNEL_IMAGE_DIR}/Image.gz-dtb"
+    rm "${ANYKERNEL_IMAGE_DIR}/Image"
     return ${BUILD_SUCCESS}
 }
 
