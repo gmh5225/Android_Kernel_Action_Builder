@@ -8,9 +8,9 @@ process_build () {
    # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
     # Remove defconfig localversion to prevent overriding
-    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/$vendor/{DEFCONFIG}"
+    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
 
-    make O=out ARCH=arm64 $vendor/{DEFCONFIG}
+    make O=out ARCH=arm64 vendor/${DEFCONFIG}
     make -j$(nproc --all) O=out                     \
         LLVM=1                                      \
         LLVM_IAS=1                                  \
