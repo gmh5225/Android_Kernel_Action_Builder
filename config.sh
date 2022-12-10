@@ -25,7 +25,7 @@ fi
 export COMPILER_NAME="CLANG"
 
 # Kernel config
-export DEFCONFIG="lisa_qgki_defconfig"
+# export DEFCONFIG="lisa_qgki_defconfig"
 export KERNEL_NAME="lisa-Kernel"
 
 export KBUILD_BUILD_USER="elf"
