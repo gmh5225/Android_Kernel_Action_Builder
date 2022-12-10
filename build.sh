@@ -20,7 +20,7 @@ process_build () {
    #     CC="${CLANG}"                               \
         CC_COMPAT=$CC_COMPAT                        \
    #     CLANG_TRIPLE=aarch64-linux-gnu-             \
-        CROSS_COMPILE="${CROSS_COMPILE}"            \
+   #     CROSS_COMPILE="${CROSS_COMPILE}"            \
         CROSS_COMPILE_COMPAT=$CC_32                 \
    #     CROSS_COMPILE_ARM32=arm-linux-androideabi-  \
         KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
