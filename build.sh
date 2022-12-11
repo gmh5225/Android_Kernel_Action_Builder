@@ -13,7 +13,7 @@ process_build () {
    sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
     make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
-    make -j$(nproc --all)                           \
+    make -j$(nproc --all)        O=out              \
         LLVM=1                                      \
         LLVM_IAS=1                                  \
         HOSTLD=ld.lld                               \
