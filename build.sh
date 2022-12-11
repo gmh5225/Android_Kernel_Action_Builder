@@ -18,6 +18,7 @@ process_build () {
         HOSTLD=ld.lld                               \
    #     CC="${CLANG}"                               \
         CC_COMPAT=$CC_COMPAT                         \
+         PATH=$C_PATH/bin:$PATH                       \
    #     CLANG_TRIPLE=aarch64-linux-gnu-             \
    #     CROSS_COMPILE="${CROSS_COMPILE}"            \
         CROSS_COMPILE_COMPAT=$CC_32                  \
