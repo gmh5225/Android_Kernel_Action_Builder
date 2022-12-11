@@ -16,7 +16,7 @@ process_build () {
     
     if [ $COMPILER_NAME = "GCC" ]
 	then
-    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig	
+    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig (	
     make -j$(nproc --all)        O=out   \
    # MAKE+=(
 			CROSS_COMPILE_ARM32=arm-eabi- \
@@ -26,11 +26,11 @@ process_build () {
 			STRIP=aarch64-elf-strip \
 			NM=aarch64-elf-nm \
 			OBJCOPY=aarch64-elf-objcopy \
-			LD=aarch64-elf-$LINKER\
+			LD=aarch64-elf-$LINKER \
          KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
-        
+        )
     elif [ $COMPILER_NAME = "CLANG" ]
-    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig	
+    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig	(
     make -j$(nproc --all)        O=out   \
   #  MAKE+=(
 			CROSS_COMPILE=aarch64-linux-gnu- \
@@ -40,9 +40,10 @@ process_build () {
 			OBJDUMP=llvm-objdump \
 			STRIP=llvm-strip \
 			NM=llvm-nm \
-			OBJCOPY=llvm-objcopy 
+			OBJCOPY=llvm-objcopy \
          KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
-          
+          )
+	  
     BUILD_SUCCESS=$?
     
     if [ ${BUILD_SUCCESS} -eq 0 ]; then
