@@ -12,12 +12,13 @@ process_build () {
   # sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig "
    sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
-    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
+   # make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
     
-    if [ $COMPILER_NAME = "gcc" ]
+    if [ $COMPILER_NAME = "GCC" ]
 	then
-    make -j$(nproc --all)        O=out   
-    MAKE+=(
+    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig	
+    make -j$(nproc --all)        O=out   \
+   # MAKE+=(
 			CROSS_COMPILE_ARM32=arm-eabi- \
 			CROSS_COMPILE=aarch64-elf- \
 			AR=aarch64-elf-ar \
@@ -28,8 +29,10 @@ process_build () {
 			LD=aarch64-elf-$LINKER\
          KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
         
-    elif [ $COMPILER_NAME = "clang" ]
-    MAKE+=(
+    elif [ $COMPILER_NAME = "CLANG" ]
+    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig	
+    make -j$(nproc --all)        O=out   \
+  #  MAKE+=(
 			CROSS_COMPILE=aarch64-linux-gnu- \
 			CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
 			CC=clang \
