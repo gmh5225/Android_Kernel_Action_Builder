@@ -3,7 +3,7 @@
 LABEL="$1"; REF="$2"
 . ./config.sh
 
-process_build () {
+process_build () #{
    # Used by compiler
    # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
@@ -16,7 +16,7 @@ process_build () {
     
     if [ $COMPILER_NAME = "GCC" ]
 	then
-    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig (	
+    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 	
     make -j$(nproc --all)        O=out   \
    # MAKE+=(
 			CROSS_COMPILE_ARM32=arm-eabi- \
@@ -27,10 +27,10 @@ process_build () {
 			NM=aarch64-elf-nm \
 			OBJCOPY=aarch64-elf-objcopy \
 			LD=aarch64-elf-$LINKER \
-         KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
-        )
+                        KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+        
     elif [ $COMPILER_NAME = "CLANG" ]
-    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig	(
+    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig	
     make -j$(nproc --all)        O=out   \
   #  MAKE+=(
 			CROSS_COMPILE=aarch64-linux-gnu- \
@@ -41,8 +41,8 @@ process_build () {
 			STRIP=llvm-strip \
 			NM=llvm-nm \
 			OBJCOPY=llvm-objcopy \
-         KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
-          )
+                        KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+          
 	  
     BUILD_SUCCESS=$?
     
@@ -57,7 +57,7 @@ process_build () {
     rm -rf "${KERNEL_DIR}/out"
     rm "${ANYKERNEL_IMAGE_DIR}/Image"
     return ${BUILD_SUCCESS}
-}
+#}
 
 cd "${KERNEL_DIR}"
 
