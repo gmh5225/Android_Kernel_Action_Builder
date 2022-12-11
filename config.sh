@@ -4,14 +4,14 @@ export REPO_ROOT=`pwd`
 
 # Paths
 export CLANG="${REPO_ROOT}/data/clang/bin/clang"
-# export HOSTCXX="${REPO_ROOT}/data/gcc/bin/aarch64-elf-g++" 
-# export CROSS_COMPILE="${REPO_ROOT}/data/gcc/bin/aarch64-elf-"
+export HOSTCXX="${REPO_ROOT}/data/gcc64/bin/aarch64-elf-g++" 
+export CROSS_COMPILE="${REPO_ROOT}/data/gcc64/bin/aarch64-elf-"
 export CC_32="${REPO_ROOT}/data/gcc/bin/arm-eabi-"
 export CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"
 export ANYKERNEL_DIR="${REPO_ROOT}/data/anykernel"
 export ANYKERNEL_IMAGE_DIR="${ANYKERNEL_DIR}"
 export KERNEL_DIR="${REPO_ROOT}/data/kernel"
-export DEFCONFIG_PATH="${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig"
+# export DEFCONFIG_PATH="${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig"
 
 
 # Define to enable ccache
@@ -24,7 +24,8 @@ if [ ! -z ${AKCI_CCACHE} ]; then
 fi
 
 # If not defined gives long compiler name
-# export COMPILER_NAME="CLANG"
+export COMPILER_NAME="CLANG"
+export COMPILER_NAME="GCC"
 
 # Kernel config
 export DEFCONFIG="lisa_qgki_defconfig"
