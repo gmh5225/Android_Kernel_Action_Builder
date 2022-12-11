@@ -10,7 +10,7 @@ process_build () {
    # export DEFCONFIG_PATH="${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig"
    # Remove defconfig localversion to prevent overriding
   # sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig "
-  # sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
+    sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
    # make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
     
@@ -18,7 +18,7 @@ process_build () {
  #	then
  #   make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 	
  #   make -j$(nproc --all)        O=out   \
-   # MAKE+=(
+
  #			CROSS_COMPILE_ARM32=arm-eabi- \
  # 			CROSS_COMPILE=aarch64-elf- \
  #			AR=aarch64-elf-ar \
@@ -33,7 +33,6 @@ process_build () {
    
     make O=out ARCH=arm64 vendor/lisa-qgki_defconfig	
     make -j$(nproc --all)        O=out   \
-  #  MAKE+=(
 			CROSS_COMPILE=aarch64-linux-gnu- \
 			CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
 			CC=clang \
