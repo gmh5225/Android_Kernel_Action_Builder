@@ -13,19 +13,33 @@ process_build () {
    sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
     make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
-    make -j$(nproc --all)        O=out              \
-        LLVM=1                                      \
-        LLVM_IAS=1                                  \
-        HOSTLD=ld.lld                               \
-   #     CC="${CLANG}"                               \
-        CC_COMPAT=$CC_COMPAT                         \
-         PATH=$C_PATH/bin:$PATH                       \
-   #     CLANG_TRIPLE=aarch64-linux-gnu-             \
-   #     CROSS_COMPILE="${CROSS_COMPILE}"            \
-        CROSS_COMPILE_COMPAT=$CC_32                  \
-   #     CROSS_COMPILE_ARM32=arm-linux-androideabi-  \
-        KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
     
+    if [ $COMPILER_NAME = "gcc" ]
+	then
+    make -j$(nproc --all)        O=out   
+    MAKE+=(
+			CROSS_COMPILE_ARM32=arm-eabi- \
+			CROSS_COMPILE=aarch64-elf- \
+			AR=aarch64-elf-ar \
+			OBJDUMP=aarch64-elf-objdump \
+			STRIP=aarch64-elf-strip \
+			NM=aarch64-elf-nm \
+			OBJCOPY=aarch64-elf-objcopy \
+			LD=aarch64-elf-$LINKER\
+         KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+        
+    elif [ $COMPILER_NAME = "clang" ]
+    MAKE+=(
+			CROSS_COMPILE=aarch64-linux-gnu- \
+			CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+			CC=clang \
+			AR=llvm-ar \
+			OBJDUMP=llvm-objdump \
+			STRIP=llvm-strip \
+			NM=llvm-nm \
+			OBJCOPY=llvm-objcopy 
+         KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+          
     BUILD_SUCCESS=$?
     
     if [ ${BUILD_SUCCESS} -eq 0 ]; then
