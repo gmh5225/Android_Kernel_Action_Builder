@@ -6,11 +6,11 @@ LABEL="$1"; REF="$2"
 process_build () #{
    # Used by compiler
    # export CC_FOR_BUILD=clang
-    export LOCALVERSION="-${FULLNAME}"
+   # export LOCALVERSION="-${FULLNAME}"
    # export DEFCONFIG_PATH="${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig"
    # Remove defconfig localversion to prevent overriding
   # sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig "
-   sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
+  # sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
    # make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
     
