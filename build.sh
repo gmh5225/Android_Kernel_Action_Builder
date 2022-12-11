@@ -12,37 +12,18 @@ process_build () {
   # sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig "
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
-   # make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
-    
- #   if [ $COMPILER_NAME = "GCC" ]
- #	then
- #   make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 	
- #   make -j$(nproc --all)        O=out   \
-
- #			CROSS_COMPILE_ARM32=arm-eabi- \
- # 			CROSS_COMPILE=aarch64-elf- \
- #			AR=aarch64-elf-ar \
- #			OBJDUMP=aarch64-elf-objdump \
- #			STRIP=aarch64-elf-strip \
- #			NM=aarch64-elf-nm \
- #			OBJCOPY=aarch64-elf-objcopy \
- #			LD=aarch64-elf-$LINKER \
- #                      PATH=${REPO_ROOT}/data/gcc64/bin/aarch64-elf-g++ \
- #                      KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-elf-gcc --version | head -n 1) \
-        
-   
-    make O=out ARCH=arm64 vendor/lisa-qgki_defconfig	
-    make -j$(nproc --all)        O=out   \
-			CROSS_COMPILE=aarch64-linux-gnu- \
-			CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-			CC=clang \
-			AR=llvm-ar \
-			OBJDUMP=llvm-objdump \
-			STRIP=llvm-strip \
-			NM=llvm-nm \
-			OBJCOPY=llvm-objcopy \
-			PATH=${REPO_ROOT}/data/clang/bin \
-                        KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+        make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
+       	make -j$(nproc --all) O=out \
+		LLVM=1                           \
+		LLVM_IAS=1                       \
+		HOSTLD=ld.lld                    \
+	#	O=work ARCH=arm64                \
+		CC_COMPAT=$CC_COMPAT             \
+		PATH=$C_PATH/bin:$PATH           \
+		CROSS_COMPILE_COMPAT=$CC_32      \
+		KBUILD_BUILD_USER=$KBUILD_USER   \
+		KBUILD_BUILD_HOST=$KBUILD_HOST   \
+		LD_LIBRARY_PATH=$C_PATH/lib:$LD_LIBRARY_PATH"
           
 	  
     BUILD_SUCCESS=$?
