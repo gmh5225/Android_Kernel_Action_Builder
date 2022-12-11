@@ -3,10 +3,6 @@
 LABEL="$1"; REF="$2"
 . ./config.sh
 
-# Specify linker.
-# 'ld.lld'(default)
-LINKER=ld.lld
-
 process_build () {
    # Used by compiler
    # export CC_FOR_BUILD=clang
