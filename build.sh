@@ -25,7 +25,8 @@ process_build () {
                               STRIP=llvm-strip                 \
                               CC=clang                         \
                               CROSS_COMPILE=aarch64-linux-gnu- \
-			      KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+			      KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-elf-gcc --version | head -n 1) \
+			  #    KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
           
 	  
     BUILD_SUCCESS=$?
