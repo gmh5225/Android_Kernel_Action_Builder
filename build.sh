@@ -12,18 +12,19 @@ process_build () {
   # sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig "
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
-        make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
-       	make -j$(nproc --all) O=out \
-		LLVM=1                           \
-		LLVM_IAS=1                       \
-		HOSTLD=ld.lld                    \
-	#	O=work ARCH=arm64                \
-		CC_COMPAT=$CC_COMPAT             \
-		PATH=$C_PATH/bin:$PATH           \
-		CROSS_COMPILE_COMPAT=$CC_32      \
-		KBUILD_BUILD_USER=$KBUILD_USER   \
-		KBUILD_BUILD_HOST=$KBUILD_HOST   \
-		LD_LIBRARY_PATH=$C_PATH/lib:$LD_LIBRARY_PATH"
+  #      make O=out ARCH=arm64 vendor/lisa-qgki_defconfig 
+	make -j$(nproc --all) O=out                            \
+                              ARCH=arm64                       \
+                              LLVM=1                           \
+                              LLVM_IAS=1                       \
+                              AR=llvm-ar                       \
+                              NM=llvm-nm                       \
+                              LD=ld.lld                        \
+                              OBJCOPY=llvm-objcopy             \
+                              OBJDUMP=llvm-objdump             \
+                              STRIP=llvm-strip                 \
+                              CC=clang                         \
+                              CROSS_COMPILE=aarch64-linux-gnu- \
           
 	  
     BUILD_SUCCESS=$?
