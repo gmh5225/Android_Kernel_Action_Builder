@@ -24,8 +24,8 @@ if [ ! -z ${AKCI_CCACHE} ]; then
 fi
 
 # If not defined gives long compiler name
-# export COMPILER_NAME="CLANG"
-export COMPILER_NAME="GCC"
+  export COMPILER_NAME="CLANG"
+# export COMPILER_NAME="GCC"
 
 # Kernel config
 export DEFCONFIG=vendor/"lisa_qgki_defconfig"
