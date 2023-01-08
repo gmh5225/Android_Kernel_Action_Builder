@@ -8,15 +8,15 @@ process_build () {
     export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
     # Remove defconfig localversion to prevent overriding
-    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/${DEFCONFIG}"
+    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
 
-    make O=out ARCH=arm64 ${DEFCONFIG}
+    make O=out ARCH=arm64 vendor/${DEFCONFIG}
     make -j$(nproc --all) O=out \
         ARCH=arm64 \
-      #  CC="${CLANG}" \
-      #  CLANG_TRIPLE=aarch64-linux-gnu- \
+        CC="${CLANG}" \
+        CLANG_TRIPLE=aarch64-linux-gnu- \
         CROSS_COMPILE="${CROSS_COMPILE}" \
-   #     CROSS_COMPILE_ARM32=arm-linux-androideabi- \
+        CROSS_COMPILE_ARM32=arm-linux-androideabi- \
         KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
     
     BUILD_SUCCESS=$?
