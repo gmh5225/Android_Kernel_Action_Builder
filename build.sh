@@ -21,6 +21,8 @@ process_build () {
         OBJCOPY=llvm-objcopy \
         OBJDUMP=llvm-objdump \
         STRIP=llvm-strip \
+        CC_COMPAT=$CC_COMPAT \
+        CROSS_COMPILE_COMPAT=$CC_32
       #  CC="${CLANG}" \
       #  CLANG_TRIPLE=aarch64-linux-gnu- \
       #  CROSS_COMPILE="${CROSS_COMPILE}" \
