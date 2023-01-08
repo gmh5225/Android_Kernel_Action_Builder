@@ -12,12 +12,23 @@ process_build () {
 
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
     make -j$(nproc --all) O=out \
-        ARCH=arm64 \
-        CC="${CLANG}" \
-        CLANG_TRIPLE=aarch64-linux-gnu- \
-        CROSS_COMPILE="${CROSS_COMPILE}" \
-        CROSS_COMPILE_ARM32=arm-linux-androideabi- \
-        KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+        ARCH=arm64 \   
+        LLVM=1 \
+        LLVM_IAS=1 \
+        AR=llvm-ar \
+        NM=llvm-nm \
+        LD=ld.lld \
+        OBJCOPY=llvm-objcopy \
+        OBJDUMP=llvm-objdump \
+        STRIP=llvm-strip \
+      #  CC="${CLANG}" \
+      #  CLANG_TRIPLE=aarch64-linux-gnu- \
+      #  CROSS_COMPILE="${CROSS_COMPILE}" \
+      #  CROSS_COMPILE_ARM32=arm-linux-androideabi- \
+        KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-elf-gcc --version | head -n 1) \
+      #  KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+       
+    
     
     BUILD_SUCCESS=$?
     
