@@ -25,7 +25,7 @@ process_build () {
 			OBJCOPY=llvm-objcopy \
 			LD="$LINKER" \
 		)
-	if [ $COMPILER_NAME = "gcc" ]; then
+	if [ $COMPILER_NAME = "gcc" ]
 	# then
 		MAKE+=(
 			CROSS_COMPILE_ARM32=arm-eabi- \
