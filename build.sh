@@ -10,27 +10,27 @@ process_build () {
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
 
+   
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
+    if [ $COMPILER_NAME = "clang" ]
     make -j$(nproc --all) O=out \
-#    	if [ $COMPILER_NAME = "clang" ]
-# then
-#		MAKE+=(
-#			CROSS_COMPILE=aarch64-linux-gnu- \
-#			CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-	#		CC=clang \
-#			AR=llvm-ar \
-	#		OBJDUMP=llvm-objdump \
-#			STRIP=llvm-strip \
-#			NM=llvm-nm \
-#			OBJCOPY=llvm-objcopy \
-#			LD="$LINKER" \
-	#	)
-#	if [ $COMPILER_NAME = "gcc" ]
-	# then
-	#	MAKE+=(
+                        ARCH=arm64 \ 
+			CROSS_COMPILE="${CROSS_COMPILE}" \
+			CROSS_COMPILE_ARM32="${CROSS_COMPILE_ARM32} \
+			CC=clang \
+                        AR=llvm-ar \
+	 		OBJDUMP=llvm-objdump \
+			STRIP=llvm-strip \
+			NM=llvm-nm \
+			OBJCOPY=llvm-objcopy \
+			LD="$LINKER" \
+	fi
+	
+	if [ $COMPILER_NAME = "gcc" ]
+        make -j$(nproc --all) O=out \
 			ARCH=arm64 \ 
-			CROSS_COMPILE_ARM32=arm-eabi- \
-			CROSS_COMPILE=aarch64-elf- \
+			CROSS_COMPILE_ARM32="${CROSS_COMPILE_ARM32}" \
+			CROSS_COMPILE="${CROSS_COMPILE}" \
 			AR=aarch64-elf-ar \
 			OBJDUMP=aarch64-elf-objdump \
 			STRIP=aarch64-elf-strip \
