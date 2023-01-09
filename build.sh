@@ -28,6 +28,7 @@ process_build () {
 #	if [ $COMPILER_NAME = "gcc" ]
 	# then
 	#	MAKE+=(
+			ARCH=arm64 \ 
 			CROSS_COMPILE_ARM32=arm-eabi- \
 			CROSS_COMPILE=aarch64-elf- \
 			AR=aarch64-elf-ar \
