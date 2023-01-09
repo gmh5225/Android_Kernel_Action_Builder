@@ -27,6 +27,9 @@ fi
 #  export COMPILER_NAME="clang"
  export COMPILER_NAME="gcc"
 
+# 'ld.lld'(default)
+export LINKER=ld.lld
+
 # Kernel config
 export DEFCONFIG="lisa-qgki_defconfig"
 export KERNEL_NAME="lisa-Kernel"
