@@ -12,22 +12,22 @@ process_build () {
 
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
     make -j$(nproc --all) O=out \
-    	if [ $COMPILER_NAME = "clang" ]
+#    	if [ $COMPILER_NAME = "clang" ]
 # then
-		MAKE+=(
-			CROSS_COMPILE=aarch64-linux-gnu- \
-			CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-			CC=clang \
-			AR=llvm-ar \
-			OBJDUMP=llvm-objdump \
-			STRIP=llvm-strip \
-			NM=llvm-nm \
-			OBJCOPY=llvm-objcopy \
-			LD="$LINKER" \
-		)
-	if [ $COMPILER_NAME = "gcc" ]
+#		MAKE+=(
+#			CROSS_COMPILE=aarch64-linux-gnu- \
+#			CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+	#		CC=clang \
+#			AR=llvm-ar \
+	#		OBJDUMP=llvm-objdump \
+#			STRIP=llvm-strip \
+#			NM=llvm-nm \
+#			OBJCOPY=llvm-objcopy \
+#			LD="$LINKER" \
+	#	)
+#	if [ $COMPILER_NAME = "gcc" ]
 	# then
-		MAKE+=(
+	#	MAKE+=(
 			CROSS_COMPILE_ARM32=arm-eabi- \
 			CROSS_COMPILE=aarch64-elf- \
 			AR=aarch64-elf-ar \
