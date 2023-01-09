@@ -12,17 +12,7 @@ process_build () {
 
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
     make -j$(nproc --all) O=out \
-        ARCH=arm64 \   
-        LLVM=1 \
-        LLVM_IAS=1 \
-        AR=llvm-ar \
-        NM=llvm-nm \
-        LD=ld.lld \
-        OBJCOPY=llvm-objcopy \
-        OBJDUMP=llvm-objdump \
-        STRIP=llvm-strip \
-        CC_COMPAT=$CC_COMPAT \
-        CROSS_COMPILE_COMPAT=$CC_32 \
+      #  ARCH=arm64 \   
       #  CC="${CLANG}" \
       #  CLANG_TRIPLE=aarch64-linux-gnu- \
       #  CROSS_COMPILE="${CROSS_COMPILE}" \
