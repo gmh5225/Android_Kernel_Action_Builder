@@ -12,7 +12,7 @@ process_build () {
 
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
     make -j$(nproc --all) O=out \
-    	if [ $COMPILER_NAME = "clang" ]; then
+    	if [ $COMPILER_NAME = "clang" ]
 # then
 		MAKE+=(
 			CROSS_COMPILE=aarch64-linux-gnu- \
