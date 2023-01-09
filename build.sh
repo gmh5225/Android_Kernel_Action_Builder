@@ -5,14 +5,14 @@ LABEL="$1"; REF="$2"
 
 process_build () {
     # Used by compiler
-    export CC_FOR_BUILD=clang
+    # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
 
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
     make -j$(nproc --all) O=out \
-    	if [ $COMPILER = "clang" ]
+    	if [ $COMPILER_NAME = "clang" ]; then
 # then
 		MAKE+=(
 			CROSS_COMPILE=aarch64-linux-gnu- \
@@ -25,7 +25,7 @@ process_build () {
 			OBJCOPY=llvm-objcopy \
 			LD="$LINKER" \
 		)
-	else [ $COMPILER = "gcc" ]
+	if [ $COMPILER_NAME = "gcc" ]; then
 	# then
 		MAKE+=(
 			CROSS_COMPILE_ARM32=arm-eabi- \
