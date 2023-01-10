@@ -9,6 +9,7 @@ process_build () {
     export LOCALVERSION="-${FULLNAME}"
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
+    sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
     make -j$(nproc --all) O=out 
