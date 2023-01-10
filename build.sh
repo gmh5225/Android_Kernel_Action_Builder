@@ -10,44 +10,19 @@ process_build () {
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
 
-    if [ $COMPILER_NAME = "clang" ]
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
-    make -j$(nproc --all) O=out \
-                        ARCH=arm64 \ 
-			CROSS_COMPILE="${CROSS_COMPILE}" \
-			CROSS_COMPILE_ARM32="${CROSS_COMPILE_ARM32} \
-			CC=clang \
-                        AR=llvm-ar \
-	 		OBJDUMP=llvm-objdump \
-			STRIP=llvm-strip \
-			NM=llvm-nm \
-			OBJCOPY=llvm-objcopy \
-			LD="$LINKER" \
-	fi
-	
-	if [ $COMPILER_NAME = "gcc" ]
-        make -j$(nproc --all) O=out \
-			ARCH=arm64 \ 
-			CROSS_COMPILE_ARM32="${CROSS_COMPILE_ARM32}" \
-			CROSS_COMPILE="${CROSS_COMPILE}" \
-			AR=aarch64-elf-ar \
-			OBJDUMP=aarch64-elf-objdump \
-			STRIP=aarch64-elf-strip \
-			NM=aarch64-elf-nm \
-			OBJCOPY=aarch64-elf-objcopy \
-			LD=aarch64-elf-$LINKER \
-    
-    
-      #  ARCH=arm64 \   
+    make -j$(nproc --all) O=out 
+         LLVM=1 \
+	 LLVM_IAS=1 \
+	 HOSTLD=ld.lld \
+         ARCH=arm64 \   
       #  CC="${CLANG}" \
       #  CLANG_TRIPLE=aarch64-linux-gnu- \
-      #  CROSS_COMPILE="${CROSS_COMPILE}" \
-      #  CROSS_COMPILE_ARM32=arm-linux-androideabi- \
-      #  KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-elf-gcc --version | head -n 1) \
-      #  KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+         CROSS_COMPILE="${CROSS_COMPILE}" \
+         CROSS_COMPILE_ARM32=arm-linux-androideabi- \
+         KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-elf-gcc --version | head -n 1) \
+         KBUILD_COMPILER_STRING="$(${CLANG} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
        
-    
-    
     BUILD_SUCCESS=$?
     
     if [ ${BUILD_SUCCESS} -eq 0 ]; then
