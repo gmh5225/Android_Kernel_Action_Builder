@@ -24,7 +24,7 @@ process_build () {
          CROSS_COMPILE_ARM32="${CROSS_COMPILE_ARM32}" \
          KBUILD_COMPILER_STRING="$($(gcc)/bin/arm-eabi-gcc --version | head -n 1)" \
        #  KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
-    sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh   
+      
     BUILD_SUCCESS=$?
     
     if [ ${BUILD_SUCCESS} -eq 0 ]; then
