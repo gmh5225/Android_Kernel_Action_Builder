@@ -20,13 +20,13 @@ process_build () {
          CC="${CLANG}" \
          CLANG_TRIPLE=aarch64-linux-gnu- \
          CROSS_COMPILE="${CROSS_COMPILE}" \
-         CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc" \
+     #    CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc" \
          CROSS_COMPILE_ARM32="${REPO_ROOT}/data/gcc/bin/arm-eabi-" \
 	 KBUILD_BUILD_USER=$KBUILD_USER \
 	 KBUILD_BUILD_HOST=$KBUILD_HOST \
-	 LD_LIBRARY_PATH="${REPO_ROOT}/data/gcc64/lib" \
+	# LD_LIBRARY_PATH="${REPO_ROOT}/data/gcc64/lib" \
        #  KBUILD_COMPILER_STRING="$($(gcc)/bin/arm-eabi-gcc --version | head -n 1)" \
-       #  KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
+         KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
       
     BUILD_SUCCESS=$?
     
