@@ -26,8 +26,8 @@ if [ ! -z ${AKCI_CCACHE} ]; then
 fi
 
 # If not defined gives long compiler name
-#  export COMPILER_NAME="clang"
- export COMPILER_NAME="gcc"
+  export COMPILER_NAME="clang"
+# export COMPILER_NAME="gcc"
 
 # 'ld.lld'(default)
 export LINKER=ld.lld
