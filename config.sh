@@ -11,7 +11,7 @@ export CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"
 export ANYKERNEL_DIR="${REPO_ROOT}/data/anykernel"
 export ANYKERNEL_IMAGE_DIR="${ANYKERNEL_DIR}"
 export KERNEL_DIR="${REPO_ROOT}/data/kernel"
-export LD_LIBRARY_PATH="${REPO_ROOT}/data/gcc64/lib"
+#export LD_LIBRARY_PATH="${REPO_ROOT}/data/gcc64/lib"
 # export DEFCONFIG_PATH="${KERNEL_DIR}/arch/arm64/configs/vendor/lisa-qgki_defconfig"
 
 
