@@ -25,7 +25,7 @@ process_build () {
 	 KBUILD_BUILD_USER=$KBUILD_USER \
 	 KBUILD_BUILD_HOST=$KBUILD_HOST \
 	 LD_LIBRARY_PATH="${REPO_ROOT}/data/gcc64/lib" \
-         KBUILD_COMPILER_STRING="$($(gcc)/bin/arm-eabi-gcc --version | head -n 1)" \
+       #  KBUILD_COMPILER_STRING="$($(gcc)/bin/arm-eabi-gcc --version | head -n 1)" \
        #  KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
       
     BUILD_SUCCESS=$?
