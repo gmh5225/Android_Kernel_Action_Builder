@@ -21,7 +21,7 @@ process_build () {
       #  CLANG_TRIPLE=aarch64-linux-gnu- \
       #  CROSS_COMPILE="${CROSS_COMPILE}" \
          CC_COMPAT="${CC_COMPAT}" \
-	 PATH="${PATH}" \
+	# PATH="${PATH}" \
          CROSS_COMPILE_ARM32="${CROSS_COMPILE_ARM32}" \
 	 LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" \
       #   KBUILD_COMPILER_STRING="$($(gcc)/bin/arm-eabi-gcc --version | head -n 1)" \
