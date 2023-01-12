@@ -32,7 +32,7 @@ export LINKER=ld.lld
 
 export DEFCONFIG="courbet_defconfig" 
 # export DEFCONFIG="lisa-qgki_defconfig"
-export KERNEL_NAME="lisa-Kernel"
+export KERNEL_NAME="courbet-Kernel"
 
 export KBUILD_BUILD_USER="elf"
 export KBUILD_BUILD_HOST="buildstation"
