@@ -31,6 +31,7 @@ export LINKER=ld.lld
 # Kernel config
 # export DEFCONFIG="lisa-qgki_defconfig"
 export DEFCONFIG="trinket_defconfig"
+export KERNEL_NAME="trinket-Kernel"
 
 export KBUILD_BUILD_USER="elf"
 export KBUILD_BUILD_HOST="buildstation"
