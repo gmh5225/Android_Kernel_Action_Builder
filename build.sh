@@ -14,17 +14,14 @@ process_build () {
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all) O=out 
-         LLVM=1                                        \
-	 LLVM_IAS=1                                    \
-	 HOSTLD=ld.lld                                 \
-         ARCH=arm64                                    \   
-         CC="${CLANG}"                               \
-      #   CLANG_TRIPLE=aarch64-linux-gnu-               \
-      #   CROSS_COMPILE="${CROSS_COMPILE}"              \
-         CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"                      \
+         LLVM=1                                                      \
+	 LLVM_IAS=1                                                  \
+	 HOSTLD=ld.lld                                               \
+         ARCH=arm64                                                  \   
+         CC="${CLANG}"                                               \
+         CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"          \
          CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"  \
          LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib" \
-     #   KBUILD_COMPILER_STRING="$($(gcc)/bin/arm-eabi-gcc --version | head -n 1)" \
          KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
       
     BUILD_SUCCESS=$?
