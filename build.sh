@@ -11,8 +11,8 @@ process_build () {
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
 
 
-    make O=out ARCH=arm64 vendor/${DEFCONFIG}
-   # make O=out ARCH=arm64 ${DEFCONFIG}
+   # make O=out ARCH=arm64 vendor/${DEFCONFIG}
+    make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all) O=out 
          ARCH=arm64                                    \   
          CC="${CLANG}"                               \
