@@ -8,8 +8,8 @@ process_build () {
     # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
     # Remove defconfig localversion to prevent overriding
-   # sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
-  #  sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
+    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
+    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
 
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
@@ -18,12 +18,12 @@ process_build () {
 	 LLVM_IAS=1                                    \
 	 HOSTLD=ld.lld                                 \
          ARCH=arm64                                    \   
-         CC="${CLANG}"                                 \
-         CLANG_TRIPLE=aarch64-linux-gnu-               \
-         CROSS_COMPILE="${CROSS_COMPILE}"              \
-     #   CC_COMPAT="${CC_COMPAT}"                      \
-     #   CROSS_COMPILE_ARM32="${CROSS_COMPILE_ARM32}"  \
-     #   LD_LIBRARY_PATH="${REPO_ROOT}/data/gcc64/lib" \
+         CLANG="${REPO_ROOT}/data/clang/bin"                               \
+      #   CLANG_TRIPLE=aarch64-linux-gnu-               \
+      #   CROSS_COMPILE="${CROSS_COMPILE}"              \
+         CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"                      \
+         CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"  \
+         LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib" \
      #   KBUILD_COMPILER_STRING="$($(gcc)/bin/arm-eabi-gcc --version | head -n 1)" \
          KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
       
