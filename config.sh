@@ -5,8 +5,7 @@ export REPO_ROOT=`pwd`
 # Paths
 export CLANG="${REPO_ROOT}/data/clang/bin"
 export HOSTCXX="${REPO_ROOT}/data/gcc64/bin/aarch64-elf-g++" 
-export CROSS_COMPILE="${REPO_ROOT}/data/gcc64/bin/aarch64-elf-"
-export CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"
+export CROSS_COMPILE="${REPO_ROOT}/data/clang/aarch64-linux-gnu-"
 export CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"
 export ANYKERNEL_DIR="${REPO_ROOT}/data/anykernel"
 export ANYKERNEL_IMAGE_DIR="${ANYKERNEL_DIR}"
