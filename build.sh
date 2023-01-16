@@ -13,6 +13,7 @@ process_build () {
 
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
+    sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
     make -j$(nproc --all) O=out 
          LLVM=1                                                      \
 	 LLVM_IAS=1                                                  \
@@ -21,7 +22,7 @@ process_build () {
          CC="${CLANG}"                                               \
          CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"          \
          CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"  \
-         LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib" \
+         LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib"               \
          KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
       
     BUILD_SUCCESS=$?
