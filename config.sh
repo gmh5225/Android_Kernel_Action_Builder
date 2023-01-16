@@ -3,7 +3,7 @@
 export REPO_ROOT=`pwd`
 
 # Paths
-export CLANG="${REPO_ROOT}/data/clang/bin"
+export CLANG="${REPO_ROOT}/data/clang/bin/clang"
 # export HOSTCXX="${REPO_ROOT}/data/gcc64/bin/aarch64-elf-g++" 
 # export CROSS_COMPILE="${REPO_ROOT}/data/clang/aarch64-linux-gnu-"
 # export CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"
