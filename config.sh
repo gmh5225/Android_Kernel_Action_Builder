@@ -4,8 +4,6 @@ export REPO_ROOT=`pwd`
 
 # Paths
 export CLANG="${REPO_ROOT}/data/clang/bin"
-export HOSTCXX="${REPO_ROOT}/data/gcc64/bin/aarch64-elf-g++" 
-export CROSS_COMPILE="${REPO_ROOT}/data/gcc64/bin/aarch64-elf-"
 export CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"
 export CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"
 export ANYKERNEL_DIR="${REPO_ROOT}/data/anykernel"
@@ -29,8 +27,7 @@ fi
 export LINKER=ld.lld
 
 # Kernel config
- export DEFCONFIG="lisa-qgki_defconfig"
-# export DEFCONFIG="trinket_defconfig"
+export DEFCONFIG="lisa-qgki_defconfig"
 export KERNEL_NAME="lisa-Kernel"
 
 export KBUILD_BUILD_USER="elf"
