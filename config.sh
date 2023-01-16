@@ -29,8 +29,7 @@ fi
 export LINKER=ld.lld
 
 # Kernel config
-
-export DEFCONFIG="courbet_defconfig" 
+ 
 # export DEFCONFIG="lisa-qgki_defconfig"
 export KERNEL_NAME="courbet-Kernel"
 
