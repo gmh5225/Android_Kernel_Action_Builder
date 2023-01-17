@@ -3,14 +3,6 @@
 LABEL="$1"; REF="$2"
 . ./config.sh
 
-muke() {
-	if [[ "$SILENCE" == "1" ]]; then
-		KERN_MAKE_ARGS="-s $KERN_MAKE_ARGS"
-	fi
-
-	make ${REPO_ROOT} $KERN_MAKE_ARGS
-	}
-
 process_build () {
     # Used by compiler
     # export CC_FOR_BUILD=clang
