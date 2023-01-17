@@ -3,6 +3,14 @@
 LABEL="$1"; REF="$2"
 . ./config.sh
 
+muke() {
+	if [[ "$SILENCE" == "1" ]]; then
+		KERN_MAKE_ARGS="-s $KERN_MAKE_ARGS"
+	fi
+
+	make $@ $KERN_MAKE_ARGS
+	}
+
 process_build () {
     # Used by compiler
     # export CC_FOR_BUILD=clang
@@ -12,9 +20,11 @@ process_build () {
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 #    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
 
+
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all) O=out 
+    KERN_MAKE_ARGS="$KERN_MAKE_ARGS    \
          LLVM=1                                                      \
 	 LLVM_IAS=1                                                  \
 	 HOSTLD=ld.lld                                               \
