@@ -8,7 +8,7 @@ muke() {
 		KERN_MAKE_ARGS="-s $KERN_MAKE_ARGS"
 	fi
 
-	make $@ $KERN_MAKE_ARGS
+	make ${REPO_ROOT} $KERN_MAKE_ARGS
 	}
 
 process_build () {
