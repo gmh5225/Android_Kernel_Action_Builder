@@ -12,13 +12,15 @@ process_build () {
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 #    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
 
-    make clean mrproper distclean
+    if [[ "$SILENCE" == "1" ]]; then
+    KERN_MAKE="-s $KERN_MAKE"
+    
+    make clean mrproper rm -rf work
     BUILD_TYPE="incremental"
     
     "--silence"
     SILENCE='1'
   
-
     make ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all)
