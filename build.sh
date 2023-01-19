@@ -12,10 +12,12 @@ process_build () {
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 #    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
 
-    ;;
-    "--silence")
+    muke clean mrproper distclean
+    BUILD_TYPE="incremental"
+    
+    "--silence"
     SILENCE='1'
-    ;;
+  
 
     make ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
