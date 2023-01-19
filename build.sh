@@ -13,7 +13,7 @@ process_build () {
 #    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
 
  #   if [ "$SILENCE" == "1" ]; then
-    make="-s $make"
+    make="-s $make -j$(nproc --all)"
     
     make clean mrproper rm -rf work
     BUILD_TYPE="incremental"
