@@ -12,7 +12,7 @@ process_build () {
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 #    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
 
-    muke clean mrproper distclean
+    make clean mrproper distclean
     BUILD_TYPE="incremental"
     
     "--silence"
