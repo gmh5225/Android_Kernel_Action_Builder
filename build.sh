@@ -12,8 +12,8 @@ process_build () {
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 #    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
 
-    if [[ "$SILENCE" == "1" ]]; then
-    KERN_MAKE="-s $KERN_MAKE"
+    if [ "$SILENCE" == "1" ]; then
+    make="-s $make"
     
     make clean mrproper rm -rf work
     BUILD_TYPE="incremental"
