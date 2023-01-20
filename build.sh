@@ -3,9 +3,9 @@
 LABEL="$1"; REF="$2"
 . ./config.sh
 
-cd "${REPO_ROOT}"
-
 process_build () {
+    cd "${REPO_ROOT}"
+    
     # Used by compiler
     # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
