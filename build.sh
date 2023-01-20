@@ -25,7 +25,7 @@ process_build () {
   
     make ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
-    KERN_MAKE_ARGS="$KERN_MAKE_ARGS    \
+    make -j$(nproc)
          LLVM=1                                                      \
 	 LLVM_IAS=1                                                  \
 	 HOSTLD=ld.lld                                               \
