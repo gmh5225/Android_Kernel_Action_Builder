@@ -4,8 +4,6 @@ LABEL="$1"; REF="$2"
 . ./config.sh
 
 process_build () {
-    cd "${REPO_ROOT}"
-    
     # Used by compiler
     # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
@@ -72,5 +70,5 @@ else
     echo "Error while building!"
 fi
 
-# cd "${REPO_ROOT}"
+cd "${REPO_ROOT}"
 exit ${BUILD_SUCCESS}
