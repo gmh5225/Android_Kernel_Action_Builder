@@ -3,7 +3,7 @@
 export REPO_ROOT=`pwd`
 
 # Paths
-export CLANG="${REPO_ROOT}/data/clang/bin/clang"
+export PATH="${REPO_ROOT}/data/clang/bin:$PATH"
 export CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"
 export CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"
 export ANYKERNEL_DIR="${REPO_ROOT}/data/anykernel"
@@ -21,6 +21,7 @@ fi
 
 # If not defined gives long compiler name
   export COMPILER_NAME="clang"
+  export COMPILER_VERSION="15"
 # export COMPILER_NAME="gcc"
 
 # 'ld.lld'(default)
