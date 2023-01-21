@@ -4,8 +4,6 @@ LABEL="$1"; REF="$2"
 . ./config.sh
 
 process_build () {
-    $@="${REPO_ROOT}"
-    
     # Used by compiler
     # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
@@ -16,9 +14,7 @@ process_build () {
     
     "$SILENCE" == "1"
     KERN_MAKE_ARGS="-s $KERN_MAKE_ARGS"
-    
-    # make $@ $KERN_MAKE_ARGS
-    
+
     make clean mrproper rm -rf work
     BUILD_TYPE="incremental"
     
