@@ -15,7 +15,9 @@ process_build () {
 #    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
     
     "$SILENCE" == "1"
-    MAKE_ARGS="-s $MAKE_ARGS"
+    KERN_MAKE_ARGS="-s $KERN_MAKE_ARGS"
+    
+    make $@ $KERN_MAKE_ARGS
     
     make clean mrproper rm -rf work
     BUILD_TYPE="incremental"
@@ -25,7 +27,7 @@ process_build () {
   
     make -j$(nproc) vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
-    MAKE_ARGS="$MAKE_ARGS    \
+    KERN_MAKE_ARGS="$KERN_MAKE_ARGS -j$(nproc)
          LLVM=1                                                      \
 	 LLVM_IAS=1                                                  \
 	 HOSTLD=ld.lld                                               \
