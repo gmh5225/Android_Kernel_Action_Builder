@@ -21,7 +21,7 @@ process_build () {
     "--silence"
     SILENCE='1'
   
-    make vendor/${DEFCONFIG}
+    make ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all)
          LLVM=1                                                      \
