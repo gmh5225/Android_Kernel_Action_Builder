@@ -16,12 +16,12 @@ process_build () {
 #    BUILD_TYPE="incremental"
     
    # "--silence"
-    SILENCE='1'
-    make+=( -s )
+#    SILENCE='1'
+#    make+=( -s )
   
     make ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
-    make -j$(nproc)  O=out\
+    make -j$(nproc --all)  O=out\
          LLVM=1                                                      \
 	 LLVM_IAS=1                                                  \
 	 HOSTLD=ld.lld                                               \
