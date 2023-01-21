@@ -26,7 +26,7 @@ process_build () {
 	 LLVM_IAS=1                                                  \
 	 HOSTLD=ld.lld                                               \
          ARCH=arm64                                                  \   
-         CC="${CLANG}"                                               \
+         PATH="${PATH}"                                               \
          CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"          \
          CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"  \
          LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib"               \
