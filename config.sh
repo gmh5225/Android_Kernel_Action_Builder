@@ -26,6 +26,10 @@ fi
 # 'ld.lld'(default)
 export LINKER=ld.lld
 
+# Silence the compilation
+# 1 is YES(default) | 0 is NO
+SILENCE=1
+
 # Kernel config
 export DEFCONFIG="lisa-qgki_defconfig"
 export KERNEL_NAME="lisa-Kernel"
