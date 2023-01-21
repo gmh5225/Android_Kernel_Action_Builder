@@ -29,7 +29,7 @@ process_build () {
          PATH="${PATH}"                                               \
          CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"          \
          CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"  \
-         LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib"               \
+#         LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib"               \
          KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
       
     BUILD_SUCCESS=$?
