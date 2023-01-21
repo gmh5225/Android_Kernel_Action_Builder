@@ -17,6 +17,7 @@ process_build () {
     
    # "--silence"
     SILENCE='1'
+    make+=( -s )
   
     make ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
