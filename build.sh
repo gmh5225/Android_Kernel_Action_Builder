@@ -17,7 +17,7 @@ process_build () {
     "$SILENCE" == "1"
     KERN_MAKE_ARGS="-s $KERN_MAKE_ARGS"
     
-    make $@ $KERN_MAKE_ARGS
+    # make $@ $KERN_MAKE_ARGS
     
     make clean mrproper rm -rf work
     BUILD_TYPE="incremental"
