@@ -12,8 +12,8 @@ process_build () {
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 #    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
     
-    make clean mrproper && rm -rf out
-    BUILD_TYPE="incremental"
+#    make mrproper && rm -rf out
+#    BUILD_TYPE="incremental"
     
    # "--silence"
     SILENCE='1'
