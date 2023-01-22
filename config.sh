@@ -2,8 +2,8 @@
 
 export REPO_ROOT=`pwd`
 
-# Paths
-export PATH="${REPO_ROOT}/data/clang/bin:$PATH"
+# Pathsclang
+export CLANG="${REPO_ROOT}/data/clang/bin/clang"
 export CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"
 export CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"
 export ANYKERNEL_DIR="${REPO_ROOT}/data/anykernel"
