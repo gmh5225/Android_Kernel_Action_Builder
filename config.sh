@@ -21,7 +21,7 @@ fi
 
 # If not defined gives long compiler name
   export COMPILER_NAME="clang"
-  export COMPILER_VERSION="15"
+#  export COMPILER_VERSION="15"
 # export COMPILER_NAME="gcc"
 
 # 'ld.lld'(default)
@@ -29,7 +29,7 @@ export LINKER=ld.lld
 
 # Silence the compilation
 # 1 is YES(default) | 0 is NO
-SILENCE=1
+# SILENCE=1
 
 # Kernel config
 export DEFCONFIG="lisa-qgki_defconfig"
