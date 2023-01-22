@@ -37,4 +37,4 @@ export KERNEL_NAME="lisa-Kernel"
 
 export KBUILD_BUILD_USER="skyhuppa"
 export KBUILD_BUILD_HOST="github_runner"
-export KBUILD_BUILD_VERSION=1.0
+export KBUILD_BUILD_VERSION=1
