@@ -13,7 +13,7 @@ process_build () {
 #    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
 
   
-    make ARCH=arm64 vendor/${DEFCONFIG}
+    make O=out ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all) O=out \
          LLVM=1                                                      \
