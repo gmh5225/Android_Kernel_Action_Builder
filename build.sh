@@ -10,9 +10,12 @@ process_build () {
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
 
-
-   # make O=out ARCH=arm64 vendor/${DEFCONFIG}
-    make O=out ARCH=arm64 ${DEFCONFIG}
+# Silence the compilation
+# 1 is YES(default) | 0 is NO
+    SILENCE='1'
+   
+    make O=out ARCH=arm64 vendor/${DEFCONFIG}
+   # make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all) O=out 
          ARCH=arm64                                    \   
          CC="${CLANG}"                               \
