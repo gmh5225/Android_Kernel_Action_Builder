@@ -10,6 +10,8 @@ process_build () {
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
 
+ BUILD_TYPE="incremental"
+
 # Silence the compilation
 # 1 is YES(default) | 0 is NO
     SILENCE='1'
