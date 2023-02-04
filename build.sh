@@ -12,7 +12,7 @@ process_build () {
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
 # Clean source prior building. 1 is NO(default) | 0 is YES
-muke clean mrproper distclean
+clean mrproper distclean
 INCREMENTAL='1'
 
 # Silence the compilation
@@ -20,7 +20,7 @@ INCREMENTAL='1'
     SILENCE='1'
    
    
-    make O=out ARCH=arm64 vendor/${DEFCONFIG}
+    make vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all) O=out 
          ARCH=arm64                                     \   
