@@ -9,6 +9,7 @@ process_build () {
     export LOCALVERSION="-${FULLNAME}"
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/vendor/configs/${DEFCONFIG}"
+    sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
 # Clean source prior building. 1 is NO(default) | 0 is YES
 INCREMENTAL='1'
