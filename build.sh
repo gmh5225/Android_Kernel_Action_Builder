@@ -5,25 +5,28 @@ LABEL="$1"; REF="$2"
 
 process_build () {
     # Used by compiler
-  #  export CC_FOR_BUILD=clang
+    # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
     # Remove defconfig localversion to prevent overriding
-    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
+    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/vendor/configs/${DEFCONFIG}"
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
-#    sed -i -r "13d;14d;15d;16d;17d" "${KERNEL_DIR}/scripts/depmod.sh"
 
-  
+# Clean source prior building. 1 is NO(default) | 0 is YES
+INCREMENTAL='1'
+
+# Silence the compilation
+# 1 is YES(default) | 0 is NO
+    SILENCE='1'
+   
     make O=out ARCH=arm64 vendor/${DEFCONFIG}
    # make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all) O=out 
-         LLVM=1           \
-	 LLVM_IAS=1       \
-	 HOSTLD=ld.lld    \
-         ARCH=arm64       \   
-         CC="${CLANG}"    \
-         CC_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-gcc"   \
-         CROSS_COMPILE_COMPAT="${REPO_ROOT}/data/gcc/bin/arm-eabi-"  \
-#         LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib"        \
+         ARCH=arm64                                     \   
+         CC="${CLANG}"                                  \
+       # CLANG_TRIPLE=aarch64-linux-gnu-                \
+         CROSS_COMPILE="${CROSS_COMPILE}"               \           
+         CROSS_COMPILE_ARM32="${CROSS_COMPILE_ARM32}"   \
+       # LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib"  \
          KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
       
     BUILD_SUCCESS=$?
