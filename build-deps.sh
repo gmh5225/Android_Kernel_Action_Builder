@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Syncing dependencies ..."
+echo "Cloning dependencies ..."
 
 mkdir "data"
 
