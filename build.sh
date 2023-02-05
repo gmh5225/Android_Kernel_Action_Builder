@@ -8,7 +8,7 @@ process_build () {
     # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
     # Remove defconfig localversion to prevent overriding
-    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/vendor/${DEFCONFIG}"
+    sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/${DEFCONFIG}"
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
 
 # Clean source prior building. 1 is NO(default) | 0 is YES
@@ -19,7 +19,6 @@ INCREMENTAL='1'
     SILENCE='1'
 
    make O=out ARCH=arm64 ${DEFCONFIG}
-  # make O=out ARCH=arm64 ${DEFCONFIG}
    make -j$(nproc)  O=out
          ARCH=arm64                                     \   
          CC="${CLANG}"                                  \
