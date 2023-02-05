@@ -24,7 +24,7 @@ fi
 # export COMPILER_NAME="gcc"
 
 # Kernel config
-export DEFCONFIG="lisa-qgki_defconfig"
+export DEFCONFIG="vendor/lisa-qgki_defconfig"
 export KERNEL_NAME="lisa-Kernel"
 
 export KBUILD_BUILD_USER="skyhuppa"
