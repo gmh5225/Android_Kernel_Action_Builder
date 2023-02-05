@@ -18,8 +18,8 @@ INCREMENTAL='1'
 # 1 is YES(default) | 0 is NO
     SILENCE='1'
    
- muke ${DEFCONFIG}
- muke -j$(nproc)
+ make ${DEFCONFIG}
+ make -j$(nproc)
   # make O=out ARCH=arm64 vendor/${DEFCONFIG}
   # make O=out ARCH=arm64 ${DEFCONFIG}
   # make -j$(nproc)  O=out
