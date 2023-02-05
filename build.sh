@@ -18,10 +18,12 @@ INCREMENTAL='1'
 # 1 is YES(default) | 0 is NO
     SILENCE='1'
    
-   
-    make O=out ARCH=arm64 vendor/${DEFCONFIG}
-   # make O=out ARCH=arm64 ${DEFCONFIG}
-    make -j$(nproc)  
+ muke ${DEFCONFIG}
+ muke -j$(nproc)
+  # make O=out ARCH=arm64 vendor/${DEFCONFIG}
+  # make O=out ARCH=arm64 ${DEFCONFIG}
+  # make -j$(nproc)  O=out
+  KERN_MAKE_ARGS="$KERN_MAKE_ARGS  \
          ARCH=arm64                                     \   
          CC="${CLANG}"                                  \
        # CLANG_TRIPLE=aarch64-linux-gnu-                \
