@@ -19,8 +19,6 @@ INCREMENTAL='1'
     SILENCE='1'
 
    make O=out ARCH=arm64 ${DEFCONFIG}
- #  make ARCH=arm64 menuconfig
-   make silentoldconfig
    make -j$(nproc)  O=out
          ARCH=arm64                                     \   
          CC="${CLANG}"                                  \
