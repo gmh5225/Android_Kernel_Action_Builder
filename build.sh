@@ -20,11 +20,10 @@ INCREMENTAL='1'
 
    make O=out ARCH=arm64 ${DEFCONFIG}
    make -j$(nproc)  O=out
-         ARCH=arm64                                     \   
-         CC="${CLANG}"                                  \
-       # CLANG_TRIPLE=aarch64-linux-gnu-                \
-         CROSS_COMPILE="${CROSS_COMPILE}"               \           
-         CROSS_COMPILE_ARM32="${CROSS_COMPILE_ARM32}"   \
+         ARCH=arm64                             \   
+         CC="${CLANG}"                          \
+         CC_COMPAT="$CC_COMPAT"                 \           
+        CROSS_COMPILE_COMPAT="$CC_32"           \
        # LD_LIBRARY_PATH="${REPO_ROOT}/data/clang/lib"  \
          KBUILD_COMPILER_STRING="$(${clang} --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')" \
       
