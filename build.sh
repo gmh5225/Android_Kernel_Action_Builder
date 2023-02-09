@@ -7,6 +7,7 @@ process_build () {
     # Used by compiler
     # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
+    export menuconfig
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/${DEFCONFIG}"
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
