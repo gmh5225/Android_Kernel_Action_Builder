@@ -18,8 +18,8 @@ INCREMENTAL='1'
 # 1 is YES(default) | 0 is NO
     SILENCE='1'
 
-   make O=out ARCH=arm64 ${DEFCONFIG}
-   make -j$(nproc)  O=out
+   make O=work ARCH=arm64 ${DEFCONFIG}
+   make -j$(nproc)  O=work
          LLVM=1     \
          LLVM_IAS=1  \
          HOSTLD=ld.lld  \
