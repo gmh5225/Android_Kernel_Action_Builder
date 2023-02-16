@@ -31,7 +31,8 @@ INCREMENTAL='1'
     SILENCE='1'
 
    make O=work ARCH=arm64 ${DEFCONFIG}
-   make -j$(nproc)  O=work
+#   make -j$(nproc)  O=work
+   MAKE_ARGS=( "$@" ) \
          LLVM=1     \
          LLVM_IAS=1  \
          HOSTLD=ld.lld  \
