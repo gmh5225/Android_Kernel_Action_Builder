@@ -33,7 +33,7 @@ INCREMENTAL='1'
 
    make O=work ARCH=arm64 ${DEFCONFIG}
 #   make -j$(nproc)  O=work
-   MAKE_ARGS=( "$@" ) 
+   MAKE_ARGS="$2" \ 
          LLVM=1     \
          LLVM_IAS=1  \
          HOSTLD=ld.lld  \
