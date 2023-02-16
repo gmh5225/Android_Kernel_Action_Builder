@@ -3,6 +3,17 @@
 LABEL="$1"; REF="$2"
 . ./config.sh
 
+menucommand="${1:-menuconfig}"
+MAKE_ARGS="${@:2}"
+
+if [[ "${menucommand}" =~ "*config" ]]; then
+MAKE_ARGS="$*"
+menucommand="menuconfig"
+
+fi
+
+POST_DEFCONFIG_CMDS="menuconfig ${menucommand} && ${POST_DEFCONFIG_CMDS}"
+
 process_build () {
     # Used by compiler
     # export CC_FOR_BUILD=clang
