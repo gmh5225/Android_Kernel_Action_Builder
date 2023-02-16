@@ -19,6 +19,7 @@ process_build () {
     # export CC_FOR_BUILD=clang
     export LOCALVERSION="-${FULLNAME}"
     export menuconfig
+    export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/${DEFCONFIG}"
     sed -i '13d;14d;15d;16d;17d' $KERNEL_DIR/scripts/depmod.sh
@@ -32,7 +33,7 @@ INCREMENTAL='1'
 
    make O=work ARCH=arm64 ${DEFCONFIG}
 #   make -j$(nproc)  O=work
-   MAKE_ARGS=( "$@" ) \
+   MAKE_ARGS=( "$@" ) 
          LLVM=1     \
          LLVM_IAS=1  \
          HOSTLD=ld.lld  \
