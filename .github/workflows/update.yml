@@ -4,11 +4,8 @@ on:
   push:
     branches:
       - kernel.lnx.5.4.r1-rel/main
-
-  workflow_dispatch:
-  
+      
 env:
-
   BOT_API_KEY: ${{ secrets.BOT_TOKEN }}
   CHAT_ID: ${{ secrets.CHAT_ID }} 
   WorkSpace: WorkSpace
