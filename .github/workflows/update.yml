@@ -1,0 +1,59 @@
+name: Generic kernel builder
+
+on: 
+  push:
+    branches:
+      - kernel.lnx.5.4.r1-rel/main
+
+  workflow_dispatch:
+  
+env:
+
+ # BOT_API_KEY: ${{ secrets.BOT_TOKEN }}
+ # CHAT_ID: ${{ secrets.CHAT_ID }} 
+  WorkSpace: WorkSpace
+  TZ: Africa/Accra
+  Author: ${{github.actor}}
+  
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    
+    steps:
+   
+      - name: Check Out
+        uses: actions/checkout@v3
+
+ #     - name: "Cleanup Environment"
+ #       uses: rokibhasansagar/slimhub_actions@main
+
+      - name: Prepare the environment
+        run: |  
+           sudo apt update
+           sudo apt -y upgrade
+           sudo apt -y install adb autoconf axel gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib build-essential libstdc++6 clang cmake expat zlib1g-dev libpng-dev rsync libssl-dev bison flex aria2 make automake zip wget curl git libc6-dev lib32ncurses5-dev libncurses5-dev libncursesw5-dev libncurses5 libwxgtk3.0-gtk3-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev python-is-python3 fastboot flex g++ g++-multilib gawk gcc gnupg htop libtinfo5 libcap-dev libexpat1-dev libgmp-dev libmpc-dev libmpfr-dev libtool maven ncurses-dev patch patchelf pkg-config pngquant re2c subversion texinfo unzip w3m lzip libxml-simple-perl libswitch-perl apt-utils gh
+      - name: Setup SSH Keys
+        if: ${{ startsWith(github.event.inputs.MANIFEST_URL, 'git@github.com') }}
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: |
+              ${{ secrets.SSH_PRIVATE_KEY }}
+       
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+           swap-size-gb: 12
+
+  #   steps:
+  #    - uses: actions/checkout@v3
+      - name: Building Kernel      
+        run: |
+             chmod +x sync.sh
+             chmod +x build-deps.sh
+             bash build-deps.sh
+             chmod +x print-vars.sh
+             bash print-vars.sh
+             chmod +x build.sh
+             bash build.sh
+             chmod +x upload.sh
+          #   bash upload.sh
