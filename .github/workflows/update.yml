@@ -32,7 +32,6 @@ jobs:
            sudo apt -y upgrade
            sudo apt -y install adb autoconf axel gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib build-essential libstdc++6 clang cmake expat zlib1g-dev libpng-dev rsync libssl-dev bison flex aria2 make automake zip wget curl git libc6-dev lib32ncurses5-dev libncurses5-dev libncursesw5-dev libncurses5 libwxgtk3.0-gtk3-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev python-is-python3 fastboot flex g++ g++-multilib gawk gcc gnupg htop libtinfo5 libcap-dev libexpat1-dev libgmp-dev libmpc-dev libmpfr-dev libtool maven ncurses-dev patch patchelf pkg-config pngquant re2c subversion texinfo unzip w3m lzip libxml-simple-perl libswitch-perl apt-utils gh
 
-      - name: Downloading commandlinetools
       - run: | 
              download_url=https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
              wget -O $RUNNER_TEMP/sdk_package.zip $download_url
