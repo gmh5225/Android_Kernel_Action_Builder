@@ -94,7 +94,8 @@ inform "
 		Last commit (name): <code>$LAST_COMMIT</code>
 		Last commit (hash): <code>$LAST_HASH</code>
 	"
-
+   telegram-send --file *-signed.zip
+   
 echo "Building ${FULLNAME} ..."
 process_build
 BUILD_SUCCESS=$?
