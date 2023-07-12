@@ -3,6 +3,29 @@
 LABEL="$1"; REF="$2"
 . ./config.sh
 
+# functions
+error() {
+	telegram-send "Error⚠️: $@"
+	exit 1
+}
+
+success() {
+	telegram-send "Success: $@"
+	exit 0
+}
+
+inform() {
+	telegram-send --format html "$@"
+}
+
+usage() {
+	inform " ./build.sh <arg>
+		--compiler   sets the compiler to be used
+		--device     sets the device for kernel build
+		--silence    Silence shell output of Kbuild"
+	exit 2
+}
+
 process_build () {
     # Used by compiler
     export CC_FOR_BUILD=clang
@@ -46,6 +69,8 @@ echo "Building ${FULLNAME} ..."
 process_build
 BUILD_SUCCESS=$?
 
+success "build completed in $(($DIFF / 60)).$(($DIFF % 60)) mins"
+
 if [ ${BUILD_SUCCESS} -eq 0 ]; then
     echo "Done!"
     # Save for use by later build stages
@@ -53,7 +78,7 @@ if [ ${BUILD_SUCCESS} -eq 0 ]; then
     # Some stats
     ccache --show-stats
 else
-    echo "Error while building!"
+      error 'while building!'
 fi
 
 cd "${REPO_ROOT}"
