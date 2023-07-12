@@ -31,6 +31,9 @@ export KBUILD_BUILD_USER="skyhuppa"
 export KBUILD_BUILD_HOST="github_runner"
 export KBUILD_BUILD_VERSION=1.0
 
+export DEVICENAME='Infinix Hot S3'
+export CODENAME='Infinix-X573'	
+
 # Setup Telegram API 
 	pip -q install telegram-send
 	gut https://github.com/rahiel/telegram-send -b master -q telegram-send
