@@ -43,7 +43,7 @@ process_build () {
 		Device: <code>$DEVICENAME</code>
 		Codename: <code>$CODENAME</code>
 		Compiler: <code>$($C_PATH/bin/$CC --version | head -n 1 | perl -pe 's/\(http.*?\)//gs')</code>
-		Compiler_32: <code>$($CC_COMPAT --version | head -n 1)</code>
+		Compiler_gcc: <code>$($CROSS_COMPILE --version | head -n 1)</code>
 	"
 
     make O=out ARCH=arm64 ${DEFCONFIG}
@@ -85,7 +85,7 @@ inform "
 		CI: <code>$KBUILD_HOST</code>
 		Core count: <code>$(nproc)</code>
 		Compiler: <code>$($C_PATH/bin/$CC --version | head -n 1 | perl -pe 's/\(http.*?\)//gs')</code>
-		Compiler_CROSS_COMPILE: <code>$($CROSS_COMPILE --version | head -n 1)</code>
+		Compiler_gcc: <code>$($CROSS_COMPILE --version | head -n 1)</code>
 		Device: <code>$DEVICENAME</code>
 		Codename: <code>$CODENAME</code>
 		Build Date: <code>$(date +"%Y-%m-%d %H:%M")</code>
