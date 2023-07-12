@@ -33,6 +33,19 @@ process_build () {
     # Remove defconfig localversion to prevent overriding
     sed -i -r "s/(CONFIG_LOCALVERSION=).*/\1/" "${KERNEL_DIR}/arch/arm64/configs/${DEFCONFIG}"
 
+       # Build Start
+	BUILD_START=$(date +"%s")
+
+	inform "
+		*************Build Triggered*************
+		Date: <code>$(date +"%Y-%m-%d %H:%M")</code>
+		Build Type: <code>$BUILD_TYPE</code>
+		Device: <code>$DEVICENAME</code>
+		Codename: <code>$CODENAME</code>
+		Compiler: <code>$($C_PATH/bin/$CC --version | head -n 1 | perl -pe 's/\(http.*?\)//gs')</code>
+		Compiler_32: <code>$($CC_COMPAT --version | head -n 1)</code>
+	"
+
     make O=out ARCH=arm64 ${DEFCONFIG}
     make -j$(nproc --all) O=out \
         ARCH=arm64 \
