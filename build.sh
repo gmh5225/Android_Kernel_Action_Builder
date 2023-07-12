@@ -65,6 +65,23 @@ if [ -z "${LABEL}" ]; then
 fi
 FULLNAME="${KERNEL_NAME}-${LABEL}"
 
+inform "
+		*************Kernel*************
+		Linux Version: <code>$KERNEL_VERSION</code>
+		AtomX-Version: <code>$VERSION</code>
+		CI: <code>$KBUILD_HOST</code>
+		Core count: <code>$(nproc)</code>
+		Compiler: <code>$($C_PATH/bin/$CC --version | head -n 1 | perl -pe 's/\(http.*?\)//gs')</code>
+		Compiler_CROSS_COMPILE: <code>$($CROSS_COMPILE --version | head -n 1)</code>
+		Device: <code>$DEVICENAME</code>
+		Codename: <code>$CODENAME</code>
+		Build Date: <code>$(date +"%Y-%m-%d %H:%M")</code>
+		Build Type: <code>$BUILD_TYPE</code>
+		-----------last commit details-----------
+		Last commit (name): <code>$LAST_COMMIT</code>
+		Last commit (hash): <code>$LAST_HASH</code>
+	"
+
 echo "Building ${FULLNAME} ..."
 process_build
 BUILD_SUCCESS=$?
