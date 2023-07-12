@@ -30,3 +30,11 @@ export COMPILER_NAME="GCC"
 export KBUILD_BUILD_USER="skyhuppa"
 export KBUILD_BUILD_HOST="github_runner"
 export KBUILD_BUILD_VERSION=1.0
+
+# Setup Telegram API 
+	pip -q install telegram-send
+	gut https://github.com/rahiel/telegram-send -b master -q telegram-send
+	sed -i s/demo1/${BOT_API_KEY}/g telegram-send.conf
+	sed -i s/demo2/${CHAT_ID}/g telegram-send.conf
+	mkdir $HOME/.config
+	mv telegram-send.conf $HOME/.config/telegram-send.conf
