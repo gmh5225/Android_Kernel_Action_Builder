@@ -9,8 +9,8 @@ on:
   
 env:
 
- # BOT_API_KEY: ${{ secrets.BOT_TOKEN }}
- # CHAT_ID: ${{ secrets.CHAT_ID }} 
+  TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+  TG_TOKEN: ${{ secrets.TG_TOKEN }}
   WorkSpace: WorkSpace
   TZ: Africa/Accra
   Author: ${{github.actor}}
