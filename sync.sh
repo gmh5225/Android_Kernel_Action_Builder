@@ -22,8 +22,8 @@ update () {
         SRC="origin"
     elif is_tag; then
         echo "Found tag, using its head"
-        fetch origin tag "${REF}" 
-        SRC="tag"
+        fetch origin tag 
+        SRC="origin"
     elif [ -z "origin/HEAD" ]; then
         echo "No ref provided, using origin head"
         fetch origin "HEAD" 
