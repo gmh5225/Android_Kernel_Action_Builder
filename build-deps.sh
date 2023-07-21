@@ -10,6 +10,6 @@ gut https://github.com/skyhuppa/Kernel_Infinix_HotS3_X573_TestBuild.git -b Test_
 gut https://github.com/skyhuppa/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git -b lineage-19.0 data/gcc
 # ./sync.sh https://github.com/skyhuppa/gcc.git "data/gcc" &
 gut https://github.com/skyhuppa/proton-clang.git -b master data/clang
-gut https://github.com/skyhuppa/AnyKernel3.git -b master "data/anykernel" maste
+gut https://github.com/skyhuppa/AnyKernel3.git -b master "data/anykernel" master
 
 echo "Done!"
