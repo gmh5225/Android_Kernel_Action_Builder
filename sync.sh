@@ -5,7 +5,7 @@ gut() {
 	}
 
 is_head () {
-    $GIT ls-remote -q --heads --exit-code "origin" 
+    ls-remote -q --heads --exit-code "origin" 
     return $?
 }
 
