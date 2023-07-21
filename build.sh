@@ -5,17 +5,17 @@ LABEL="$1"; REF="$2"
 
 # functions
 error() {
-	telegram-send "Error⚠️: ${REPO_ROOT"
+	telegram-send "Error⚠️: $@"
 	exit 1
 }
 
 success() {
-	telegram-send "Success: ${REPO_ROOT"
+	telegram-send "Success: $@"
 	exit 0
 }
 
 inform() {
-	telegram-send --format html "${REPO_ROOT"
+	telegram-send --format html $@"
 }
 
 usage() {
