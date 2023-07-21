@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ./sync.sh
+
 echo "Syncing dependencies ..."
 
 mkdir "data"
