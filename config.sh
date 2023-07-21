@@ -39,5 +39,5 @@ export CODENAME='Infinix-X573'
 	git clone https://github.com/rahiel/telegram-send -b master -q telegram-send
 	sed -i s/demo1/${BOT_API_KEY}/g telegram-send.conf
 	sed -i s/demo2/${CHAT_ID}/g telegram-send.conf
-       # mkdir $HOME/.config
-	mv telegram-send.conf ../.config/telegram-send.conf
+        mkdir $REPO_ROOT/.config
+	mv telegram-send.conf $REPO_ROOT/.config/telegram-send.conf
