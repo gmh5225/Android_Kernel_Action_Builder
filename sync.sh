@@ -10,7 +10,7 @@ is_head () {
 }
 
 is_tag () {
-    $GIT ls-remote -q --tags --exit-code "origin" 
+    ls-remote -q --tags --exit-code "origin" 
     return $?
 }
 
