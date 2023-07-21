@@ -61,7 +61,7 @@ jobs:
       - name: Building Kernel
       
         run: |
-             chmod +x sync.sh
+           #  chmod +x sync.sh
              chmod +x build-deps.sh
              bash build-deps.sh
              chmod +x print-vars.sh
