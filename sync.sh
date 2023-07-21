@@ -1,6 +1,10 @@
 #!/bin/bash
 
-URL="$1"; DIR="$2"; REF="$3"
+gut() {
+		git clone --depth=1 -q $@
+	}
+
+REF="$3"
 GIT="git -C ${DIR}"
 echo "Obtaining '${URL}' in '${DIR}' ..."
 
