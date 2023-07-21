@@ -17,27 +17,27 @@ is_tag () {
 update () {
     if is_head; then
         echo "Found branch, using its head"
-        remote set-branches --add origin || exit "$?"
-        fetch origin || exit "$?"
+        remote set-branches --add origin
+        fetch origin 
         SRC="origin"
     elif is_tag; then
         echo "Found tag, using its head"
-        fetch origin tag "${REF}" || exit "$?"
+        fetch origin tag "${REF}" 
         SRC="tag"
     elif [ -z "origin/HEAD" ]; then
         echo "No ref provided, using origin head"
-        fetch origin "HEAD" || exit "$?"
+        fetch origin "HEAD" 
         SRC="origin/HEAD"
     else
         echo "No such tag or branch, aborting!"
         exit 1
     fi
-    checkout -f --detach "${SRC}" || exit "$?"
+    checkout -f --detach "${SRC}"
 }
 
 if [ ! -d "$@" ]; then
     mkdir -p "$@"
-    gut "${URL}" . -n --depth=1 || exit "$?"
+    gut "${URL}"
 fi
 
 update
