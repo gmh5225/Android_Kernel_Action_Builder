@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# LABEL="$1"; REF="$2"
+LABEL="TESTBUILD-$(git rev-parse --short HEAD)"
 . ./config.sh
 
 # functions
