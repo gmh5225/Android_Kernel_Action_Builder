@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LABEL="$1"; REF="$2"
+# LABEL="$1"; REF="$2"
 . ./config.sh
 
 # functions
