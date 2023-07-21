@@ -33,11 +33,3 @@ export KBUILD_BUILD_VERSION=1.0
 
 export DEVICENAME='Infinix Hot S3'
 export CODENAME='Infinix-X573'	
-
-# Setup Telegram API 
-	pip -q install telegram-send
-	git clone https://github.com/rahiel/telegram-send -b master -q telegram-send
-	sed -i s/demo1/${BOT_API_KEY}/g telegram-send.conf
-	sed -i s/demo2/${CHAT_ID}/g telegram-send.conf
-       # mkdir $HOME/.config
-	mv telegram-send.conf $HOME/.config/telegram-send.conf
